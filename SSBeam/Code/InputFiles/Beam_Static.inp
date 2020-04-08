@@ -1,0 +1,41 @@
+#NODE, NSET=AllNodes
+(Node Number, X-coordinate(Meter), Y-coordinate(Meter), Z-coordinate(Meter)) 
+1, 0.0, 0.0, 0.0
+2, 2.0, 0.0, 0.0
+3, 4.0, 0.0, 0.0
+4, 6.0, 0.0, 0.0
+5, 8.0, 0.0, 0.0
+6, 10.0, 0.0, 0.0
+7, 12.0, 0.0, 0.0
+8, 14.0, 0.0, 0.0
+9, 16.0, 0.0, 0.0
+10, 18.0, 0.0, 0.0
+11, 20.0, 0.0, 0.0
+#ELEMENT, ELSET=Beam
+(Element Number, 1st Node Number, 2nd Node Number)
+1, 1, 2
+2, 2, 3
+3, 3, 4
+4, 4, 5
+5, 5, 6
+6, 6, 7
+7, 7, 8
+8, 8, 9
+9, 9, 10
+10, 10, 11
+#MATERIAL, NAME=Steel
+(Material Name, Young's Modulus(Pa), Poisson's Ratio, Density(Kg/m^3))
+29.43E+9, 0.3, 2982.3272090988626
+#ASSIGN
+(Element or Element Set, Element Type, Material Name, Sectional Area(m^2), 2nd Moment of Inertia(m^4))
+Beam, Steel, EulerBeam, 11.43, 3.81
+#BOUNDARY, NAME=FixedSupport
+(Node Number or Node Set, "All" or DOF Number at Node, "Fixed" or Prescribed Displacement(Meter))
+1, 1, Fixed
+11, 1, Fixed
+#CLOAD, NAME=CenterForce
+(Node Number or Node Set, DOF Number of Node, Force(Newton))
+6, 1, -100000
+#ANALYSIS
+(Analysis Type, Applied Boundary Conditions)
+LinearStatic, FixedSupport, CenterForce

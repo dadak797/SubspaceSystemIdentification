@@ -1,0 +1,162 @@
+#NODE
+(Node Number, X-coordinate(Meter), Y-coordinate(Meter), Z-coordinate(Meter)) 
+1, 0.0, 0.0, 0.0
+2, 2.0, 0.0, 0.0
+3, 4.0, 0.0, 0.0
+4, 6.0, 0.0, 0.0
+5, 8.0, 0.0, 0.0
+6, 10.0, 0.0, 0.0
+7, 12.0, 0.0, 0.0
+8, 14.0, 0.0, 0.0
+9, 16.0, 0.0, 0.0
+10, 18.0, 0.0, 0.0
+11, 20.0, 0.0, 0.0
+#ELEMENT
+(Element Number, 1st Node Number, 2nd Node Number)
+1, 1, 2
+2, 2, 3
+3, 3, 4
+4, 4, 5
+5, 5, 6
+6, 6, 7
+7, 7, 8
+8, 8, 9
+9, 9, 10
+10, 10, 11
+#MATERIAL, NAME=Steel
+(Material Name, Young's Modulus(Pa), Poisson's Ratio, Density(Kg/m^3))
+29.43E+9, 0.3, 2982.3272090988626
+#ASSIGN, NAME=Damaged
+(Element or Element Set, Element Type, Material Name, Sectional Area(m^2), 2nd Moment of Inertia(m^4))
+1, Steel, EulerBeam, 11.43, 3.81
+2, Steel, EulerBeam, 11.43, 3.81
+3, Steel, EulerBeam, 11.43, 3.81
+4, Steel, EulerBeam, 11.43, 3.81
+5, Steel, EulerBeam, 11.43, 3.81
+6, Steel, EulerBeam, 11.43, 3.81
+7, Steel, EulerBeam, 11.43, 3.81
+8, Steel, EulerBeam, 11.43, 3.81
+9, Steel, EulerBeam, 11.43, 3.81
+10, Steel, EulerBeam, 11.43, 3.81
+#ASSIGN, NAME=Intact
+(Element or Element Set, Element Type, Material Name, Sectional Area(m^2), 2nd Moment of Inertia(m^4))
+1, Steel, EulerBeam, 11.43, 3.81
+2, Steel, EulerBeam, 11.43, 3.81
+3, Steel, EulerBeam, 11.43, 3.81
+4, Steel, EulerBeam, 11.43, 3.81
+5, Steel, EulerBeam, 11.43, 3.81
+6, Steel, EulerBeam, 11.43, 3.81
+7, Steel, EulerBeam, 11.43, 3.81
+8, Steel, EulerBeam, 11.43, 3.81
+9, Steel, EulerBeam, 11.43, 3.81
+10, Steel, EulerBeam, 11.43, 3.81
+#BOUNDARY, NAME=FixedSupport
+(Node Number or Node Set, "All" or DOF Number at Node, "Fixed" or Prescribed Displacement(Meter))
+1, 1, Fixed
+11, 1, Fixed
+#TIMESTEP
+(Initial Time, Final Time, Time Step(sec))
+0.0, 2.0, 0.00002
+#DAMPING, NAME=Damping, TYPE=Modal
+(a0, a1 for Rayleigh), (Mode Number, Damping Ratio for Modal)
+1,  0.00
+2,  0.00
+3,  0.00
+4,  0.00
+5,  0.00
+6,  0.00
+7,  0.00
+8,  0.00
+9,  0.00
+10, 0.00
+11, 0.00
+12, 0.00
+13, 0.00
+14, 0.00
+15, 0.00
+16, 0.00
+17, 0.00
+18, 0.00
+19, 0.00
+20, 0.00
+#HARMONIC, NAME=Harmonic
+(Mode Number, Amplitude, Phase Angle(degree))
+1, 1000., 0.
+2, 1000., 0.
+3, 1000., 0.
+4, 1000., 0.
+5, 1000., 0.
+6, 1000., 0.
+7, 1000., 0.
+8, 1000., 0.
+9, 1000., 0.
+10, 1000., 0.
+11, 1000., 0.
+12, 1000., 0.
+13, 1000., 0.
+14, 1000., 0.
+15, 1000., 0.
+16, 1000., 0.
+17, 1000., 0.
+18, 1000., 0.
+19, 1000., 0.
+20, 1000., 0.
+#ANALYSIS, LOADTYPE=HarmonicVibration
+(Analysis Type, Assign Name, Initial Condition(Dynamic), Applied Boundary Conditions)
+Dynamic, Damaged, FixedSupport, Damping, Harmonic
+#SUBSPACESI, LOADTYPE=HarmonicVibration
+(k-Value, Time-Step, Time Window Size)
+100, 0.00002, 1.0
+#SUBSPACESI_ITERATIVE
+(Initial Time, Final Time, Stride, Prior Info. Update)
+0.0, 0.1, 0.01, Update
+#SUBSPACESI_USEDINPUT
+(Used Input Node, DOF)
+1, 2
+2, 1
+2, 2
+3, 1
+3, 2
+4, 1
+4, 2
+5, 1
+5, 2
+6, 1
+6, 2
+7, 1
+7, 2
+8, 1
+8, 2
+9, 1
+9, 2
+10, 1
+10, 2
+11, 2
+#SUBSPACESI_USEDOUTPUT, TYPE=Disp
+(Used Output Node, DOF)
+1, 2
+2, 1
+2, 2
+3, 1
+3, 2
+4, 1
+4, 2
+5, 1
+5, 2
+6, 1
+6, 2
+7, 1
+7, 2
+8, 1
+8, 2
+9, 1
+9, 2
+10, 1
+10, 2
+11, 2
+#SUBSPACESI_PRIOR_INFO
+(Assign Name, Applied Boundary Conditions)
+Intact, FixedSupport, Damping
+#SUBSPACESI_ARTIFICIAL_NOISE
+(Seed Number, Magnitude of Measurement Noise)
+0, 0.05
