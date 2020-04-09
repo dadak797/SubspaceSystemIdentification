@@ -1,4 +1,4 @@
-SSBeam/Code/InputFiles/*.inp
+SSBeam/Code/InputFiles/
 SSBeam/Code/Results
 SSBeam/Code/*.inp
 SSBeam/Code/*.out
