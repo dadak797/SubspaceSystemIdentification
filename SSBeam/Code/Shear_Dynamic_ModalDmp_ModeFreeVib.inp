@@ -70,7 +70,7 @@ Dynamic, Damaged, Initial, FixedSupport, CMass, Damping
 100, 0.01, 10.0
 #SUBSPACESI_ITERATIVE
 (Initial Time, Final Time, Stride, Prior Info. Update)
-0.0, 20.0, 0.5, Update
+0.0, 15.0, 0.5, Update
 #SUBSPACESI_USEDINPUT
 (Used Input Node, DOF)
 2, 1
